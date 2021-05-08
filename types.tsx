@@ -14,9 +14,9 @@ export type BottomTabParamList = {
 };
 
 export type TabOneParamList = {
-  TabOneScreen: undefined;
+  TabOneScreen: any;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  TabTwoScreen: any;
 };
