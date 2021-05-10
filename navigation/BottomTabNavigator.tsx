@@ -46,7 +46,12 @@ export default function BottomTabNavigator() {
         name="Profile"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: () => <TabBarIcon name="person-outline" color="black" />,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              name={focused ? `person` : `person-outline`}
+              color="black"
+            />
+          ),
         }}
       />
     </BottomTab.Navigator>

@@ -43,8 +43,9 @@ const AuthModal = ({ onSignedIn }: { onSignedIn: () => void }) => {
 
 const styles = StyleSheet.create({
   modal: {
-    borderRadius: 30,
     width: `90%`,
+    borderWidth: 5,
+    borderColor: `black`,
   },
   backdrop: {
     backgroundColor: `rgba(0, 0, 0, 0.8)`,

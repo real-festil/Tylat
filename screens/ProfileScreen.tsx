@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import * as React from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 import AuthModal from '../components/AuthModal';
 
 import { Text, View } from '../components/Themed';
@@ -41,12 +42,14 @@ export default function ProfileScreen({ navigation }: { navigation: any }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>There will be profile</Text>
       {isUser ? (
-        <>
-          <Text>Welcome {user!.displayName}</Text>
-          <Button onPress={onSignOut}>Sign out</Button>
-        </>
+        <View style={styles.userContainer}>
+          <View>
+            <Ionicons size={90} name="person" />
+            <Text style={styles.userText}>{user!.displayName}</Text>
+          </View>
+          <Ionicons onPress={onSignOut} size={40} name="log-out-outline" />
+        </View>
       ) : (
         isFocused && (
           <Animated.View style={{ opacity: fadeAnim }}>
@@ -58,6 +61,7 @@ export default function ProfileScreen({ navigation }: { navigation: any }) {
           </Animated.View>
         )
       )}
+      <Text style={styles.title}>There will be profile</Text>
     </View>
   );
 }
@@ -67,6 +71,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: `center`,
     justifyContent: `center`,
+    padding: 20,
+  },
+  userContainer: {
+    justifyContent: `space-between`,
+    alignItems: `flex-start`,
+    flexDirection: `row`,
+    width: `100%`,
+    height: `100%`,
+    paddingTop: 100,
+  },
+  userText: {
+    fontSize: 20,
+    fontWeight: `600`,
+    paddingLeft: 8,
   },
   title: {
     fontSize: 20,
@@ -76,5 +94,11 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: `80%`,
+  },
+  button: {
+    backgroundColor: `black`,
+    marginTop: 25,
+    borderColor: `black`,
+    height: 10,
   },
 });

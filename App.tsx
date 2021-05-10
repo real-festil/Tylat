@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import firebase from 'firebase';
+import { ActivityIndicator, View } from 'react-native';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
@@ -29,10 +30,10 @@ export default function App() {
 
   firebase.auth().onAuthStateChanged(
     (user) => {
-      if (user) {
-        console.log(`user`, user);
-      }
-      setIsLoading(false);
+      // if (user) {
+      //   console.log(`user`, user);
+      // }
+      setTimeout(() => setIsLoading(false), 100);
     },
     (error) => console.log(error),
   );
@@ -46,7 +47,11 @@ export default function App() {
         {/* <PersistGate loading={null} persistor={persistor}> */}
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider {...eva} theme={{ ...eva.light }}>
-          {!isLoading && (
+          {isLoading ? (
+            <View style={{ justifyContent: `center`, height: `100%` }}>
+              <ActivityIndicator size="large" color="black" />
+            </View>
+          ) : (
             <SafeAreaProvider>
               <Navigation colorScheme={colorScheme} />
               <StatusBar />
